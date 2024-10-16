@@ -85,8 +85,8 @@ col2.metric(label="American Put Price", value=f"${american_put_price:,.3f}")
 st.write("### Heatmaps of American Call and Put Prices with Spot Price and Volatility")
 
 # Generate ranges for spot prices and volatilities
-spot_range = np.linspace(min_spot, max_spot, 20)  # Increased to 20 for better resolution
-volatility_range = np.linspace(min_vol, max_vol, 20)  # Increased to 20
+spot_range = np.linspace(min_spot, max_spot, 10)  # Increased to 20 for better resolution
+volatility_range = np.linspace(min_vol, max_vol, 10)  # Increased to 20
 
 # Create 2D arrays for American call and put prices based on spot prices and volatilities
 @st.cache_data  # Cache the heatmap data to optimize performance
