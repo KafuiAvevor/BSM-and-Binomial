@@ -131,3 +131,5 @@ with col_heat1:
     st.pyplot(fig_call)
 with col_heat2:
     st.pyplot(fig_put)
+
+
