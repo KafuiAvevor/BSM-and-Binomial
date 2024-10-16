@@ -21,7 +21,7 @@ with st.sidebar:
     with col2:
         time_to_expiry = st.number_input("Time to Expiry (in years)", min_value=0.00, value=1.00, step=0.01)
         volatility = st.number_input("Volatility (e.g., 0.2 for 20%)", min_value=0.00, value=0.2, step=0.01)
-        number_of_steps = st.number_input("Number of Steps (Binomial Model)", min_value=10, max_value=1000, value=100, step=10)
+        number_of_steps = st.number_input("Number of Steps (Binomial Model)", min_value=1, max_value=1000, value=100, step=10)
     
     st.markdown("---")
     st.header("Heatmap Parameters")
