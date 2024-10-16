@@ -49,7 +49,7 @@ def black_scholes(spot_price, strike_price, risk_free_rate, time_to_expiry, vola
 call_price = black_scholes(spot_price, strike_price, risk_free_rate, time_to_expiry, volatility)
 put_price = black_scholes(spot_price, strike_price, risk_free_rate, time_to_expiry, volatility, option_type="put")
 
-st.write("### European Option Price")
+st.write("### Option Price (European")
 col1, col2 = st.columns(2)
 col1.metric(label="European Call Price", value=f"${call_price:,.3f}")
 col2.metric(label="European Put Price", value=f"${put_price:,.3f}")
