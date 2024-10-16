@@ -77,7 +77,7 @@ for i, vol in enumerate(volatility_range):
         call_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol)
         put_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol, option_type="put")
 
-fig_call, ax_call = plt.subplots(1, 2, figsize=(10, 6))
+fig, (ax_call, ax_put) = plt.subplots(1, 2, figsize=(16, 6))
 
 # Plot the heatmap for Call Prices on the first subplot
 sns.heatmap(call_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2),
@@ -93,6 +93,9 @@ ax_put.set_title('Put Option Prices Heatmap')
 ax_put.set_xlabel('Spot Price')
 ax_put.set_ylabel('Volatility')
 
+# Adjust layout and display heatmaps
+plt.tight_layout()
+st.pyplot(fig)
 
 
 #Calculate the Greeks
