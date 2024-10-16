@@ -80,3 +80,38 @@ st.write("### Option Price (American Binomial Model)")
 col1, col2 = st.columns(2)
 col1.metric(label="American Call Price", value=f"${american_call_price:,.3f}")
 col2.metric(label="American Put Price", value=f"${american_put_price:,.3f}")
+
+
+# Generate the heatmap data (for Call and Put Prices with different Spot Prices and Volatilities)
+st.write("### Heatmaps of American Call and Put Prices with Volatility and Spot Price")
+
+spot_range = np.linspace(min_spot, max_spot, 10)  # 10 different spot prices
+volatility_range = np.linspace(min_vol, max_vol , 10)  # 10 different volatilities
+
+
+# Create 2D arrays for call and put prices based on spot prices and volatilities
+call_prices = np.zeros((len(volatility_range), len(spot_range)))
+put_prices = np.zeros((len(volatility_range), len(spot_range)))
+
+for i, vol in enumerate(volatility_range):
+    for j, spot in enumerate(spot_range):
+        call_prices[i, j] = binomial_american_option(spot, strike_price, risk_free_rate, time_to_expiry, vol)
+        put_prices[i, j] = binomial_american_option(spot, strike_price, risk_free_rate, time_to_expiry, vol, option_type="put")
+
+# Plot the heatmap for Call Prices
+st.write("### American Call Option Prices Heatmap")
+plt.figure(figsize=(10, 6))
+sns.heatmap(call_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2), yticklabels=np.round(volatility_range, 2), cmap="RdYlGn")
+plt.title('Call Option Prices Heatmap')
+plt.xlabel('Spot Price')
+plt.ylabel('Volatility')
+st.pyplot(plt)
+
+# Plot the heatmap for Put Prices
+st.write("### American Put Option Prices Heatmap")
+plt.figure(figsize=(10, 6))
+sns.heatmap(put_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2), yticklabels=np.round(volatility_range, 2), cmap="RdYlGn")
+plt.title('Put Option Prices Heatmap')
+plt.xlabel('Spot Price')
+plt.ylabel('Volatility')
+st.pyplot(plt)
