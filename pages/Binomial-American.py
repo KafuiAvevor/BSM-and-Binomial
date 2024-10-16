@@ -76,7 +76,7 @@ american_call_price = binomial_american_option(spot_price, strike_price, time_to
 american_put_price = binomial_american_option(spot_price, strike_price, time_to_expiry, risk_free_rate, volatility, number_of_steps, option_type='put')
 
 # Display Option Prices (American Binomial)
-st.write("### Option Price (American Binomial Model)")
+st.write("### Option Price (American)")
 col1, col2 = st.columns(2)
 col1.metric(label="American Call Price", value=f"${american_call_price:,.3f}")
 col2.metric(label="American Put Price", value=f"${american_put_price:,.3f}")
