@@ -77,23 +77,28 @@ for i, vol in enumerate(volatility_range):
         call_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol)
         put_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol, option_type="put")
 
-# Plot the heatmap for Call Prices
-st.write("### Call Option Prices Heatmap")
-plt.figure(figsize=(10, 6))
-sns.heatmap(call_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2), yticklabels=np.round(volatility_range, 2), cmap="RdYlGn")
-plt.title('Call Option Prices Heatmap')
-plt.xlabel('Spot Price')
-plt.ylabel('Volatility')
-st.pyplot(plt)
+fig_call, ax_call = plt.subplots(1, 2, figsize=(10, 6))
 
-# Plot the heatmap for Put Prices
-st.write("### Put Option Prices Heatmap")
-plt.figure(figsize=(10, 6))
-sns.heatmap(put_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2), yticklabels=np.round(volatility_range, 2), cmap="RdYlGn")
-plt.title('Put Option Prices Heatmap')
-plt.xlabel('Spot Price')
-plt.ylabel('Volatility')
-st.pyplot(plt)
+# Plot the heatmap for Call Prices on the first subplot
+sns.heatmap(call_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2),
+            yticklabels=np.round(volatility_range, 2), cmap="RdYlGn", ax=ax_call)
+ax_call.set_title('Call Option Prices Heatmap')
+ax_call.set_xlabel('Spot Price')
+ax_call.set_ylabel('Volatility')
+
+# Plot the heatmap for Put Prices on the second subplot
+sns.heatmap(put_prices, annot=True, fmt=".2f", xticklabels=np.round(spot_range, 2),
+            yticklabels=np.round(volatility_range, 2), cmap="RdYlGn", ax=ax_put)
+ax_put.set_title('Put Option Prices Heatmap')
+ax_put.set_xlabel('Spot Price')
+ax_put.set_ylabel('Volatility')
+
+# Display Heatmaps
+col_heat1, col_heat2 = st.columns(2)
+with col_heat1:
+    st.pyplot(fig_call)
+with col_heat2:
+    st.pyplot(fig_put)
 
 #Calculate the Greeks
 d1 = (np.log(spot_price / strike_price) + (risk_free_rate + volatility**2 / 2) * time_to_expiry) / (volatility * np.sqrt(time_to_expiry))
