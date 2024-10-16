@@ -66,8 +66,7 @@ with st.sidebar:
 st.write("### Heatmaps of European Call and Put Prices with Spot Price and Volatility")
 
 spot_range = np.linspace(min_spot, max_spot, 10)  # 10 different spot prices
-volatility_range = np.linspace(min_vol, max_vol , 10)  # 10 different volatilities
-
+volatility_range = np.linspace(min_vol, max_vol, 10)  # 10 different volatilities
 
 # Create 2D arrays for call and put prices based on spot prices and volatilities
 call_prices = np.zeros((len(volatility_range), len(spot_range)))
@@ -78,6 +77,7 @@ for i, vol in enumerate(volatility_range):
         call_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol)
         put_prices[i, j] = black_scholes(spot, strike_price, risk_free_rate, time_to_expiry, vol, option_type="put")
 
+# Plotting heatmaps
 fig, (ax_call, ax_put) = plt.subplots(1, 2, figsize=(16, 6))
 
 # Plot the heatmap for Call Prices on the first subplot
@@ -98,7 +98,7 @@ ax_put.set_ylabel('Volatility')
 plt.tight_layout()
 st.pyplot(fig)
 
-
+# Function to download heatmaps
 def download_heatmap(heatmap_data, title):
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.heatmap(heatmap_data, annot=True, fmt=".2f", cmap="RdYlGn", ax=ax)
@@ -124,7 +124,6 @@ if st.button("Download Call Price Heatmap"):
 if st.button("Download Put Price Heatmap"):
     put_heatmap_download = download_heatmap(put_prices, "Put Prices Heatmap")
     st.markdown(f'<a href="{put_heatmap_download}" download="put_prices_heatmap.png">Download Put Prices Heatmap</a>', unsafe_allow_html=True)
-
 #Calculate the Greeks
 d1 = (np.log(spot_price / strike_price) + (risk_free_rate + volatility**2 / 2) * time_to_expiry) / (volatility * np.sqrt(time_to_expiry))
 d2 = d1 - volatility * np.sqrt(time_to_expiry)
