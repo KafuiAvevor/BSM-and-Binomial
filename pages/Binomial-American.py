@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import norm
+import base64
 
 st.title("Binomial Model for American Options")
 st.markdown("### By Kafui Avevor")
@@ -131,8 +132,6 @@ with col_heat1:
     st.pyplot(fig_call)
 with col_heat2:
     st.pyplot(fig_put)
-
-import base64
 
 def download_heatmap(heatmap_data, filename):
     fig, ax = plt.subplots(figsize=(10, 6))
