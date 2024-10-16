@@ -95,8 +95,8 @@ put_prices = np.zeros((len(volatility_range), len(spot_range)))
 
 for i, vol in enumerate(volatility_range):
     for j, spot in enumerate(spot_range):
-        call_prices[i, j] = binomial_american_option(spot, strike_price, risk_free_rate, time_to_expiry, vol)
-        put_prices[i, j] = binomial_american_option(spot, strike_price, risk_free_rate, time_to_expiry, vol, option_type="put")
+        call_prices[i, j] = binomial_american_option(spot_price, strike_price, time_to_expiry, risk_free_rate, volatility, number_of_steps, option_type='call')
+        put_prices[i, j] = binomial_american_option(spot_price, strike_price, time_to_expiry, risk_free_rate, volatility, number_of_steps, option_type='put')
 
 # Plot the heatmap for Call Prices
 st.write("### American Call Option Prices Heatmap")
