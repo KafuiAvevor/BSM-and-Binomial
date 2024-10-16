@@ -63,7 +63,7 @@ with st.sidebar:
     min_spot = st.number_input("Min Spot Price",0.00, 1000.00, spot_price*0.5)
     max_spot = st.number_input("Max Spot Price",0.00, 1000.00, spot_price*1.5)
 # Generate the heatmap data (for Call and Put Prices with different Spot Prices and Volatilities)
-st.write("### Heatmaps of European Call and Put Prices with Volatility and Spot Price")
+st.write("### Heatmaps of European Call and Put Prices with Spot Price and Volatility")
 
 spot_range = np.linspace(min_spot, max_spot, 10)  # 10 different spot prices
 volatility_range = np.linspace(min_vol, max_vol , 10)  # 10 different volatilities
