@@ -7,6 +7,7 @@ from scipy.stats import norm
 import math
 
 st.title("Black Scholes Pricing Model")
+st.markdown("### By Kafui Avevor")
 with st.sidebar:
     st.title("Black Scholes Pricing Model")
     st.subheader("By Kafui Avevor")
