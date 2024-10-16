@@ -131,5 +131,7 @@ with col_heat1:
     st.pyplot(fig_call)
 with col_heat2:
     st.pyplot(fig_put)
-
+st.markdown("---")
+st.markdown("### Developed by Kafui Avevor")
+st.markdown("### [LinkedIn](https://www.linkedin.com/in/kafui-avevor/) | [GitHub](https://github.com/kafuiavevor)")
 
