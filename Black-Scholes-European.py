@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import norm
 import math
+import base64
+from io import BytesIO
 
 st.title("Black Scholes Pricing Model")
 st.markdown("### By Kafui Avevor")
