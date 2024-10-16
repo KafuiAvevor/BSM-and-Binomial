@@ -131,6 +131,36 @@ with col_heat1:
     st.pyplot(fig_call)
 with col_heat2:
     st.pyplot(fig_put)
+
+import base64
+
+def download_heatmap(heatmap_data, filename):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.heatmap(heatmap_data, annot=True, fmt=".2f", cmap="RdYlGn", ax=ax)
+    plt.title('Heatmap')
+    plt.xlabel('Spot Price')
+    plt.ylabel('Volatility')
+    plt.tight_layout()
+
+    # Save the figure to a BytesIO object
+    from io import BytesIO
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    
+    # Encode to base64
+    b64 = base64.b64encode(buf.read()).decode()
+    return f'data:image/png;base64,{b64}'
+
+# Add a download button
+if st.button("Download Call Price Heatmap"):
+    call_heatmap_download = download_heatmap(call_prices_heatmap, "call_prices_heatmap.png")
+    st.markdown(f'<a href="{call_heatmap_download}" download="call_prices_heatmap.png">Download Call Prices Heatmap</a>', unsafe_allow_html=True)
+
+if st.button("Download Put Price Heatmap"):
+    put_heatmap_download = download_heatmap(put_prices_heatmap, "put_prices_heatmap.png")
+    st.markdown(f'<a href="{put_heatmap_download}" download="put_prices_heatmap.png">Download Put Prices Heatmap</a>', unsafe_allow_html=True)
+    
 st.markdown("---")
 st.markdown("### Developed by Kafui Avevor")
 st.markdown("### [LinkedIn](https://www.linkedin.com/in/kafui-avevor/) | [GitHub](https://github.com/kafuiavevor)")
