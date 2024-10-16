@@ -93,12 +93,7 @@ ax_put.set_title('Put Option Prices Heatmap')
 ax_put.set_xlabel('Spot Price')
 ax_put.set_ylabel('Volatility')
 
-# Display Heatmaps
-col_heat1, col_heat2 = st.columns(2)
-with col_heat1:
-    st.pyplot(fig_call)
-with col_heat2:
-    st.pyplot(fig_put)
+
 
 #Calculate the Greeks
 d1 = (np.log(spot_price / strike_price) + (risk_free_rate + volatility**2 / 2) * time_to_expiry) / (volatility * np.sqrt(time_to_expiry))
