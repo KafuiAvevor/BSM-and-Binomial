@@ -135,8 +135,8 @@ col1.metric(label="Gamma", value=f"{gamma:,.3f}")
 col2.metric(label="Vega", value=f"{vega:,.3f}")
 
 col1, col2 = st.columns(2)
-col1.metric(label="Call Theta", value=f"{theta_call:,.3f}")
-col2.metric(label="Put Theta", value=f"{theta_put:,.3f}")
+col1.metric(label="Call Theta", value=f"{theta_call/100:,.3f}")
+col2.metric(label="Put Theta", value=f"{theta_put/100:,.3f}")
 
 col1, col2 = st.columns(2)
 col1.metric(label="Call Rho", value=f"{rho_call:,.3f}")
