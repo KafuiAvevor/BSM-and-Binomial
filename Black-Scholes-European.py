@@ -20,24 +20,11 @@ with st.sidebar:
     risk_free_rate = col1.number_input("Risk Free Rate", min_value=0.00, value=0.05)
     time_to_expiry = col2.number_input("Time to Expiry (in years)", min_value=0.00, value=1.00)
     volatility = col2.number_input("Volatility", min_value=0.00, value=0.2)
-    number_of_steps = col2.number_input("number_of_steps", min_value=0, value=100)
+
 
 
 # Black Scholes Model
 def black_scholes(spot_price, strike_price, risk_free_rate, time_to_expiry, volatility, option_type="call"):
-    """
-  This function calculates the Black-Scholes option price.
- 
-  Args:
-      spot_price (float): The current price of the underlying asset.
-      strike_price (float): The strike price of the option.
-      risk_free_rate (float): The risk-free interest rate.
-      time_to_expiry (float): The time to expiry of the option in years.
-      volatility (float): The implied volatility of the underlying asset.
-      option_type (str, optional): The type of option ("call" or "put"). Defaults to "call".
-    Returns:
-      float: The Black-Scholes option price.
-  """
     d1 = (np.log(spot_price / strike_price) + (risk_free_rate + volatility**2 / 2) * time_to_expiry) / (volatility * np.sqrt(time_to_expiry))
     d2 = d1 - volatility * np.sqrt(time_to_expiry)
     if option_type == "call":
